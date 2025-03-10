@@ -6,6 +6,26 @@ describe('tests form', () => {
     it('chack page title', async () => {       
         await expect(browser).toHaveTitle('Swag Labs')
     })
+
+    // it('check the error masage "Username is required"', async () => {
+                
+    //     await $('//input[@id="user-name"]').setValue('billy');
+    //     await $('//*[@id="password"]').setValue('123456');
+    //     await $('//input[@id="user-name"]').clearValue();
+    //     await $('//*[@id="password"]').clearValue();
+    //     await $('//input[@id="login-button"]').click();
+    //     await expect($('//h3[contains("text","Username is required")]')).toBeDisplayed();
+    // })
+    
+    it('check the error masage "Password is required"', async () => {
+                
+        await $('//input[@id="user-name"]').setValue('billy');
+        await $('//*[@id="password"]').setValue('123456');        
+        await $('//*[@id="password"]').clearValue();
+        await $('//input[@id="login-button"]').click();
+        await expect($('//h3[contains("text","Password is required")]')).toBeDisplayed();
+    })
+    
 })
 
 // Task description
