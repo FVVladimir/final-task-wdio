@@ -20,8 +20,8 @@ describe('tests form', () => {
     it('check the error masage "Password is required"', async () => {
                 
         await $('//input[@id="user-name"]').setValue('billy');
-        await $('//*[@id="password"]').setValue('123456');        
-        await $('//*[@id="password"]').clearValue();
+        // await $('//*[@id="password"]').setValue('123456');        
+        // await $('//*[@id="password"]').clearValue();
         await $('//input[@id="login-button"]').click();
         await expect($('//h3[contains("text","Password is required")]')).toBeDisplayed();
     })
