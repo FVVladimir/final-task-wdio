@@ -1,4 +1,4 @@
-export const config = {
+exports.config = {
     //
     // ====================
     // Runner Configuration
@@ -21,7 +21,7 @@ export const config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './test/specs/**/*.js'
+        './../tests/*.tests.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -49,9 +49,17 @@ export const config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [{
+    capabilities: [
+        {
         browserName: 'chrome'
-    }],
+    }
+    // {
+    //     browserName: 'firefox'
+    // },
+    // {
+    //     browserName: 'edge'
+    // }
+],
 
     //
     // ===================
