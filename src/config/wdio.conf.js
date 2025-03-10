@@ -55,10 +55,7 @@ exports.config = {
     }
     // {
     //     browserName: 'firefox'
-    // },
-    // {
-    //     browserName: 'edge'
-    // }
+    // }  
 ],
 
     //
