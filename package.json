@@ -1,7 +1,10 @@
 {
   "name": "final-task-at-js",
+  "version": "0.0.1",
+  "description": "pom with wdio",
+  "private":"true",
   "scripts": {
-    "wdio": "wdio run src/config/wdio.conf.js"
+    "test": "wdio run src/config/wdio.conf.js"
   },  
   "devDependencies": {
     "@wdio/cli": "^9.11.0",
