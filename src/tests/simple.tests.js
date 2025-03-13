@@ -3,7 +3,7 @@ describe('tests login form', () => {
         await browser.url( 'https://www.saucedemo.com/')
     })
     
-    it('check the error masage "Username is required"', async () => {
+    it('Check the error messages: "Username is required"', async () => {
         
         await $('//input[@id="user-name"]').setValue('problem_user');
         await $('//*[@id="password"]').setValue('123456');        
@@ -31,7 +31,7 @@ describe('tests login form', () => {
         await expect($('//h3[contains(text(),"Username is required")]'));
     })
     
-    it('check the error masage "Password is required"', async () => {      
+    it('Check the error messages: "Password is required"', async () => {      
         
         await $('//input[@id="user-name"]').setValue('problem_user');
         await $('//input[@id="password"]').setValue('123456');        
@@ -43,7 +43,7 @@ describe('tests login form', () => {
         await expect($('//h3[contains(text(),"Password is required")]'));
     })
     
-    it('loggin and chack page title', async () => {    
+    it('Login and validate the title “Swag Labs” in the dashboard', async () => {    
         
         await $('//input[@id="user-name"]').setValue('standard_user');
         await $('//input[@id="password"]').setValue('secret_sauce'); 
