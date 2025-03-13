@@ -1,18 +1,21 @@
+
+const StartPage = require('./../po/pages/start.page');
+
+const startPage = new StartPage();
+
 describe('tests login form', () => {
-    beforeEach( async () => {
-        await browser.url( 'https://www.saucedemo.com/')
+    beforeEach( async () => {        
+        await startPage.open();
     })
     
     it('Check the error messages: "Username is required"', async () => {
         
-        await $('//input[@id="user-name"]').setValue('problem_user');
-        await $('//*[@id="password"]').setValue('123456');        
         
-        await browser.pause(2000);
-        await $('//input[@id="user-name"]').clearValue();
+        await startPage.loginForm.nameField.setValue('problem_user');
+        await startPage.loginForm.passwordField.setValue('123456');        
         
-        await browser.pause(2000);
-        await $('//*[@id="password"]').clearValue();
+        await startPage.loginForm.nameField.clearValue();        
+        await startPage.loginForm.passwordField.clearValue();
 
         // await $('//input[@id="user-name"]').waitUntil(async () => (await $('//input[@id="user-name"]').getValue()) === '', {
         //     timeout: 5000,
@@ -22,8 +25,7 @@ describe('tests login form', () => {
         // await $('//*[@id="password"]').waitUntil(async () => (await $('//*[@id="password"]').getValue()) === '', {
         //     timeout: 5000,
         //     timeoutMsg: 'Password field is not cleared'
-        // });
-        
+        // });        
         
         await browser.pause(2000);
         await $('//input[@id="login-button"]').click();
@@ -33,10 +35,10 @@ describe('tests login form', () => {
     
     it('Check the error messages: "Password is required"', async () => {      
         
-        await $('//input[@id="user-name"]').setValue('problem_user');
-        await $('//input[@id="password"]').setValue('123456');        
+        await startPage.loginForm.nameField.setValue('problem_user');
+        await startPage.loginForm.passwordField.setValue('123456');        
         
-        await $('//input[@id="password"]').setValue('');        
+        await startPage.loginForm.passwordField.clearValue();        
         
         await $('//input[@id="login-button"]').click();
         
@@ -45,8 +47,8 @@ describe('tests login form', () => {
     
     it('Login and validate the title “Swag Labs” in the dashboard', async () => {    
         
-        await $('//input[@id="user-name"]').setValue('standard_user');
-        await $('//input[@id="password"]').setValue('secret_sauce'); 
+        await startPage.loginForm.nameField.setValue('standard_user');
+        await startPage.loginForm.passwordField.setValue('secret_sauce'); 
         
         await $('//input[@id="login-button"]').click();
         await expect(browser).toHaveTitle('Swag Labs')
