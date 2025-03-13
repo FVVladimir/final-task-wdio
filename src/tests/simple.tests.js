@@ -28,7 +28,7 @@ describe('tests login form', () => {
         // });        
         
         await browser.pause(2000);
-        await $('//input[@id="login-button"]').click();
+        await startPage.loginForm.loginButton.click();
         
         await expect($('//h3[contains(text(),"Username is required")]'));
     })
@@ -40,7 +40,7 @@ describe('tests login form', () => {
         
         await startPage.loginForm.passwordField.clearValue();        
         
-        await $('//input[@id="login-button"]').click();
+        await startPage.loginForm.loginButton.click();
         
         await expect($('//h3[contains(text(),"Password is required")]'));
     })
@@ -50,7 +50,7 @@ describe('tests login form', () => {
         await startPage.loginForm.nameField.setValue('standard_user');
         await startPage.loginForm.passwordField.setValue('secret_sauce'); 
         
-        await $('//input[@id="login-button"]').click();
+        await startPage.loginForm.loginButton.click();
         await expect(browser).toHaveTitle('Swag Labs')
     })
 })
