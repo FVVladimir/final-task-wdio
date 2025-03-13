@@ -1,31 +1,56 @@
-describe('tests form', () => {
+describe('tests login form', () => {
     beforeEach( async () => {
         await browser.url( 'https://www.saucedemo.com/')
     })
+    
+    it('check the error masage "Username is required"', async () => {
+        
+        await $('//input[@id="user-name"]').setValue('problem_user');
+        await $('//*[@id="password"]').setValue('123456');        
+        
+        await browser.pause(2000);
+        await $('//input[@id="user-name"]').clearValue();
+        
+        await browser.pause(2000);
+        await $('//*[@id="password"]').clearValue();
 
-    it('chack page title', async () => {       
+        // await $('//input[@id="user-name"]').waitUntil(async () => (await $('//input[@id="user-name"]').getValue()) === '', {
+        //     timeout: 5000,
+        //     timeoutMsg: 'Username field is not cleared'
+        // });
+        
+        // await $('//*[@id="password"]').waitUntil(async () => (await $('//*[@id="password"]').getValue()) === '', {
+        //     timeout: 5000,
+        //     timeoutMsg: 'Password field is not cleared'
+        // });
+        
+        
+        await browser.pause(2000);
+        await $('//input[@id="login-button"]').click();
+        
+        await expect($('//h3[contains(text(),"Username is required")]'));
+    })
+    
+    it('check the error masage "Password is required"', async () => {      
+        
+        await $('//input[@id="user-name"]').setValue('problem_user');
+        await $('//input[@id="password"]').setValue('123456');        
+        
+        await $('//input[@id="password"]').setValue('');        
+        
+        await $('//input[@id="login-button"]').click();
+        
+        await expect($('//h3[contains(text(),"Password is required")]'));
+    })
+    
+    it('loggin and chack page title', async () => {    
+        
+        await $('//input[@id="user-name"]').setValue('standard_user');
+        await $('//input[@id="password"]').setValue('secret_sauce'); 
+        
+        await $('//input[@id="login-button"]').click();
         await expect(browser).toHaveTitle('Swag Labs')
     })
-
-    // it('check the error masage "Username is required"', async () => {
-                
-    //     await $('//input[@id="user-name"]').setValue('billy');
-    //     await $('//*[@id="password"]').setValue('123456');
-    //     await $('//input[@id="user-name"]').clearValue();
-    //     await $('//*[@id="password"]').clearValue();
-    //     await $('//input[@id="login-button"]').click();
-    //     await expect($('//h3[contains("text","Username is required")]')).toBeDisplayed();
-    // })
-    
-    it('check the error masage "Password is required"', async () => {
-                
-        await $('//input[@id="user-name"]').setValue('billy');
-        // await $('//*[@id="password"]').setValue('123456');        
-        // await $('//*[@id="password"]').clearValue();
-        await $('//input[@id="login-button"]').click();
-        await expect($('//h3[contains("text","Password is required")]')).toBeDisplayed();
-    })
-    
 })
 
 // Task description
